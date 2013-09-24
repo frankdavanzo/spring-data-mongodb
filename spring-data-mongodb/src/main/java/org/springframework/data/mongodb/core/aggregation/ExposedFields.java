@@ -152,12 +152,28 @@ public class ExposedFields implements Iterable<ExposedField> {
 	}
 
 	/**
+	 * Returns whether the {@link ExposedFields} exposes no fields at all.
+	 * 
+	 * @return
+	 */
+	public boolean exposesNoFields() {
+		return exposedFieldsCount() == 0;
+	}
+
+	/**
 	 * Returns whether the {@link ExposedFields} exposes a single field only.
 	 * 
 	 * @return
 	 */
 	public boolean exposesSingleFieldOnly() {
-		return originalFields.size() + syntheticFields.size() == 1;
+		return exposedFieldsCount() == 1;
+	}
+
+	/**
+	 * @return
+	 */
+	private int exposedFieldsCount() {
+		return originalFields.size() + syntheticFields.size();
 	}
 
 	/* 

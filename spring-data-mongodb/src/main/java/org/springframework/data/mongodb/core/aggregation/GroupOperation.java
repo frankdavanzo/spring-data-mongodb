@@ -279,7 +279,11 @@ public class GroupOperation extends ExposedFieldsAggregationOperationContext imp
 
 		BasicDBObject operationObject = new BasicDBObject();
 
-		if (nonSynthecticFields.exposesSingleFieldOnly()) {
+		if (nonSynthecticFields.exposesNoFields()) {
+
+			operationObject.put(Fields.UNDERSCORE_ID, null);
+
+		} else if (nonSynthecticFields.exposesSingleFieldOnly()) {
 
 			FieldReference reference = context.getReference(nonSynthecticFields.iterator().next());
 			operationObject.put(Fields.UNDERSCORE_ID, reference.toString());
